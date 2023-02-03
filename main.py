@@ -50,15 +50,19 @@ if __name__ == "__main__":
     loadConfig()
     postCache = loadCache()
     initReddit()
+    print("Fetching comments...")
     comments = list(reddit.subreddit(config["subreddit"]).comments(limit=1000))
     comments.reverse()
+    i = 1
     for comment in comments:
+        print(f"Processing {i} of {len(comments)} comments...\r", end="")
         post_id = comment.link_id.split("_")[1]
         cacheIfNotExist(post_id, postCache)
         submission_comments = postCache[post_id]["comments"]
         if comment.id not in submission_comments:
-            if not check_comment(comment.body, submission_comments):
-                postCache[post_id]["comments"][comment.id] = comment.body
+            if len(comment.body) > 10 and check_comment(comment.body, submission_comments):
+                print(f"https://www.reddit.com{comment.permalink}")
             else:
-                print(f"Detected a potential comment bot: https://www.reddit.com{comment.permalink}")
+                postCache[post_id]["comments"][comment.id] = comment.body
+        i+=1
     saveCache(postCache)

@@ -12,5 +12,5 @@ def check_comment(comment, comment_cache):
     for comment_id in comment_cache:
         original = comment_cache[comment_id]
         for match, index in fuzzy_extract(comment, original, 90):
-            print(f"Match!\nOriginal: {original}\nPotential Bot: {comment}\n\n")
+            print(f"\nMatch!\nOriginal: {original}\nPotential Bot: {comment}")
             return True
