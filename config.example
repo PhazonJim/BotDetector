@@ -1,0 +1,7 @@
+client:
+  client_id: MyClientId
+  user_agent: MyUserAgentString
+  client_secret: MyClientSecret
+  username: MyUserName
+  password: MyPassword
+subreddit: MySubreddit
