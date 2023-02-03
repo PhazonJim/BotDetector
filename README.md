@@ -20,6 +20,3 @@ A set of tools that allows the use of python plugins to easily process comment, 
 
 # Testing
 TBD
-
-# Architecture
-![Image](https://i.imgur.com/Y4hXXxX.png)
