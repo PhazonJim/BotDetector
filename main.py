@@ -51,7 +51,7 @@ if __name__ == "__main__":
     postCache = loadCache()
     initReddit()
     print("Fetching comments...")
-    comments = list(reddit.subreddit(config["subreddit"]).comments(limit=1000))
+    comments = list(reddit.subreddit(config["subreddit"]).comments(limit=config["comments_to_fetch"]))
     comments.reverse()
     i = 1
     for comment in comments:
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         cacheIfNotExist(post_id, postCache)
         submission_comments = postCache[post_id]["comments"]
         if comment.id not in submission_comments:
-            if len(comment.body) > 10 and check_comment(comment.body, submission_comments):
+            if len(comment.body) > config["minimum_comment_size"] and check_comment(comment.body, submission_comments):
                 print(f"https://www.reddit.com{comment.permalink}")
             else:
                 postCache[post_id]["comments"][comment.id] = comment.body

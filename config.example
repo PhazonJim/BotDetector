@@ -4,4 +4,6 @@ client:
   client_secret: MyClientSecret
   username: MyUserName
   password: MyPassword
-subreddit: MySubreddit
+subreddit: MySubreddit+MyOtherSubreddit
+comments_to_fetch: 200
+minimum_comment_size: 20
